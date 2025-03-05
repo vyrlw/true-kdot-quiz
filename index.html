@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <title>Trivia!</title>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Trivia!</h1>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>Multiple Choice</h2>
+            <hr>
+            <h3>What was Kendrick Lamar's previous stage name?</h3>
+
+            <button class="myButton wrong" data-message="UR TROLLING">Mr. Morale</button>
+            <button class="myButton wrong" data-message="this is his evil twin">Lendrick Kamar</button>
+            <button class="myButton right" id="specialButton" data-message="yeah everyone knows this">Kdot</button>
+            <button class="myButton wrong" data-message="nigga stfu">Kungfu Kenny</button>
+            <p id="messageBox1"></p>
+        </div>
+
+        <div class="section">
+            <h2>Multiple Choice</h2>
+            <hr>
+            <h3>What is Kendrick Lamar's best album?</h3>
+
+            <button class="myButton wrong" data-message="valid but still wrong.">To Pimp A Butterfly</button>
+            <button class="myButton wrong" data-message="mf u wrong as hell">Section.80</button>
+            <button class="myButton right" id="specialButton2" data-message="the only correct answer. FIRST ALBUM AND HE ALREADY POPPED OFF OMG THIS IS MY GOATTTTTTTTTT">good kid, m.A.A.d city</button>
+            <button class="myButton wrong" data-message="Troll ass nigga! this shit is overrated!">DAMN.</button>
+            <p id="messageBox2"></p>
+        </div>
+
+        <div class="section">
+            <h2>Free Response</h2>
+            <hr>
+
+            <h3>Which city is the setting for Kendrick Lamar's freshman album?</h3>
+            <input id="textInput" autocomplete="off" autofocus placeholder="Type here..." type="text">
+            <button id="submitAnswer">Submit</button>
+            <p id="result"></p>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            document.querySelectorAll(".myButton").forEach(button => {
+                button.addEventListener("click", function () {
+                    document.querySelectorAll(".myButton").forEach(btn => {
+                        btn.style.backgroundColor = "";
+                    });
+
+                    let message = this.getAttribute("data-message");
+
+                    let messageBox = this.closest(".section").querySelector("p");
+
+                    if (this.id === "specialButton" || this.id === "specialButton2") {
+                        this.style.backgroundColor = "green";
+                    } else {
+                        this.style.backgroundColor = "red";
+
+                        setTimeout(() => {
+                            this.style.backgroundColor = "";
+                        }, 500);
+                    }
+
+                    messageBox.innerText = message;
+                });
+            });
+
+            document.querySelector("#submitAnswer").addEventListener("click", function () {
+                let answer = document.querySelector("#textInput").value.trim().toLowerCase();
+                let result = document.querySelector("#result");
+
+                if (answer === "compton") {
+                    result.innerText = "EASY AS HELLL";
+                    result.style.color = "green";
+                } else {
+                    result.innerText = "fake ass fan why dont u stop trolling now.  ";
+                    result.style.color = "red";
+                }
+            });
+        };
+    </script>
+
+</body>
+
+</html>
